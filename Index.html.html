@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bahan Ajar Interaktif PtLSV - Ibu Suswiyati</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Accordion transition styles */
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, opacity 0.4s ease-out;
+            opacity: 0;
+        }
+        .accordion-content.open {
+            max-height: 1000px; /* Arbitrary large number for transition */
+            opacity: 1;
+        }
+        .math-eq {
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: 600;
+            color: #1e40af;
+            background-color: #eff6ff;
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.25rem;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen text-gray-800">
+
+    <!-- Header Section -->
+    <header class="bg-white shadow-md py-8 px-4 mb-8 text-center border-b-4 border-indigo-500">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-3xl md:text-4xl font-bold text-indigo-700 mb-2">Pertidaksamaan Linier Satu Variabel (PtLSV)</h1>
+            <p class="text-lg text-gray-600 mb-4">Modul Pembelajaran Matematika Interaktif</p>
+            <div class="inline-block bg-indigo-100 text-indigo-800 px-4 py-2 rounded-full font-semibold text-sm">
+                👩‍🏫 Disusun oleh: Ibu Suswiyati
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-4 pb-12">
+        
+        <!-- Theory Section -->
+        <section class="bg-white rounded-2xl shadow-lg p-6 md:p-8 mb-10 border border-gray-100">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                <span class="text-3xl mr-2">📚</span> Mari Pahami Konsepnya!
+            </h2>
+            <div class="space-y-4 text-gray-700 leading-relaxed">
+                <p>
+                    <strong>Pertidaksamaan Linier Satu Variabel (PtLSV)</strong> adalah kalimat terbuka yang hanya memiliki satu variabel berpangkat satu dan dihubungkan oleh tanda ketidaksamaan (<span class="math-eq">&lt;</span>, <span class="math-eq">&gt;</span>, <span class="math-eq">&le;</span>, atau <span class="math-eq">&ge;</span>).
+                </p>
+                
+                <div class="bg-blue-50 rounded-xl p-5 border-l-4 border-blue-500 mt-6">
+                    <h3 class="text-lg font-bold text-blue-800 mb-2">⚖️ Asas Kesetimbangan</h3>
+                    <p class="mb-3">
+                        Untuk mencari penyelesaian PtLSV, kita menggunakan <strong>Asas Kesetimbangan</strong>. Bayangkan pertidaksamaan seperti sebuah timbangan. Agar timbangan tetap seimbang (maknanya tetap benar), apa yang kita lakukan pada ruas kiri harus kita lakukan juga pada ruas kanan.
+                    </p>
+                    <ul class="list-disc list-inside space-y-2 text-blue-900">
+                        <li><strong>Menambah/Mengurang:</strong> Kita boleh menambah atau mengurang kedua ruas dengan bilangan yang sama.</li>
+                        <li><strong>Mengali/Membagi (Bilangan Positif):</strong> Kita boleh mengali atau membagi kedua ruas dengan bilangan positif yang sama.</li>
+                        <li class="bg-red-100 p-2 rounded-md font-semibold text-red-700">
+                            🚨 ATURAN PENTING: Jika kita MENGALI atau MEMBAGI kedua ruas dengan BILANGAN NEGATIF, maka tanda ketidaksamaan HARUS DIBALIK! (Contoh: &lt; menjadi &gt;).
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exercises Section -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                <span class="text-3xl mr-2">✍️</span> Latihan Soal & Pembahasan (Matematika Murni)
+            </h2>
+            <p class="text-gray-600 mb-6">
+                Coba kerjakan 10 soal di bawah ini di buku catatanmu terlebih dahulu menggunakan Asas Kesetimbangan.
+            </p>
+
+            <!-- Container for JS generated questions -->
+            <div id="questions-container" class="space-y-4">
+                <!-- Questions will be injected here by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Story/Applied Questions Section -->
+        <section>
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                <span class="text-3xl mr-2">🌍</span> Soal Cerita (Aplikasi Sehari-hari)
+            </h2>
+            <p class="text-gray-600 mb-6">
+                Mari kita terapkan konsep PtLSV dalam kehidupan nyata. Ubah cerita ke dalam bentuk matematika, lalu selesaikan!
+            </p>
+            <div id="story-questions-container" class="space-y-4">
+                <!-- Story Questions injected here -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6 text-center mt-12">
+        <p class="text-sm opacity-80">© 2026 Bahan Ajar Matematika - Ibu Suswiyati. Tetap Semangat Belajar!</p>
+    </footer>
+
+    <!-- Logic Script -->
+    <script>
+        // Data Soal Murni (10 Soal bervariasi)
+        const questionsData = [
+            {
+                q: "x + 3 > 7",
+                desc: "Tentukan penyelesaian dari pertidaksamaan di atas!",
+                steps: [
+                    "Agar menyisakan <span class='math-eq'>x</span> di ruas kiri, kita harus menghilangkan angka 3.",
+                    "Gunakan asas kesetimbangan: <strong>Kurangi kedua ruas dengan 3</strong>.",
+                    "<span class='math-eq'>x + 3 <b>- 3</b> > 7 <b>- 3</b></span>",
+                    "<span class='math-eq'>x > 4</span>"
+                ],
+                final: "x > 4",
+                varName: "x", val: 4, dir: "right", isClosed: false
+            },
+            {
+                q: "y - 5 \u2264 2",
+                desc: "Tentukan penyelesaian dari pertidaksamaan di atas!",
+                steps: [
+                    "Agar menyisakan <span class='math-eq'>y</span> di ruas kiri, kita harus menghilangkan angka -5.",
+                    "Gunakan asas kesetimbangan: <strong>Tambahkan kedua ruas dengan 5</strong>.",
+                    "<span class='math-eq'>y - 5 <b>+ 5</b> \u2264 2 <b>+ 5</b></span>",
+                    "<span class='math-eq'>y \u2264 7</span>"
+                ],
+                final: "y \u2264 7",
+                varName: "y", val: 7, dir: "left", isClosed: true
+            },
+            {
+                q: "3a < 12",
+                desc: "Tentukan penyelesaian dari pertidaksamaan di atas!",
+                steps: [
+                    "Di ruas kiri terdapat 3 dikali <span class='math-eq'>a</span>.",
+                    "Gunakan asas kesetimbangan: <strong>Bagi kedua ruas dengan 3</strong> (karena 3 positif, tanda tetap).",
+                    "<span class='math-eq'>3a <b>/ 3</b> < 12 <b>/ 3</b></span>",
+                    "<span class='math-eq'>a < 4</span>"
+                ],
+                final: "a < 4",
+                varName: "a", val: 4, dir: "left", isClosed: false
+            },
+            {
+                q: "-2b \u2265 8",
+                desc: "Hati-hati dengan tanda negatif!",
+                steps: [
+                    "Di ruas kiri terdapat -2 dikali <span class='math-eq'>b</span>.",
+                    "Gunakan asas kesetimbangan: <strong>Bagi kedua ruas dengan -2</strong>.",
+                    "<span class='bg-yellow-200 px-1 rounded'>Ingat Aturan Penting! Karena dibagi bilangan negatif, tanda \u2265 dibalik menjadi \u2264.</span>",
+                    "<span class='math-eq'>-2b <b>/ (-2)</b> \u2264 8 <b>/ (-2)</b></span>",
+                    "<span class='math-eq'>b \u2264 -4</span>"
+                ],
+                final: "b \u2264 -4",
+                varName: "b", val: -4, dir: "left", isClosed: true
+            },
+            {
+                q: "2x + 4 > 10",
+                desc: "Tentukan himpunan penyelesaiannya!",
+                steps: [
+                    "Langkah 1: <strong>Kurangi kedua ruas dengan 4</strong>.",
+                    "<span class='math-eq'>2x + 4 <b>- 4</b> > 10 <b>- 4</b></span>",
+                    "<span class='math-eq'>2x > 6</span>",
+                    "Langkah 2: <strong>Bagi kedua ruas dengan 2</strong>.",
+                    "<span class='math-eq'>2x <b>/ 2</b> > 6 <b>/ 2</b></span>",
+                    "<span class='math-eq'>x > 3</span>"
+                ],
+                final: "x > 3",
+                varName: "x", val: 3, dir: "right", isClosed: false
+            },
+            {
+                q: "3p - 2 \u2264 13",
+                desc: "Tentukan himpunan penyelesaiannya!",
+                steps: [
+                    "Langkah 1: <strong>Tambahkan kedua ruas dengan 2</strong>.",
+                    "<span class='math-eq'>3p - 2 <b>+ 2</b> \u2264 13 <b>+ 2</b></span>",
+                    "<span class='math-eq'>3p \u2264 15</span>",
+                    "Langkah 2: <strong>Bagi kedua ruas dengan 3</strong>.",
+                    "<span class='math-eq'>3p <b>/ 3</b> \u2264 15 <b>/ 3</b></span>",
+                    "<span class='math-eq'>p \u2264 5</span>"
+                ],
+                final: "p \u2264 5",
+                varName: "p", val: 5, dir: "left", isClosed: true
+            },
+            {
+                q: "5m + 1 < 2m + 10",
+                desc: "Ada variabel di kedua ruas, kumpulkan di salah satu ruas!",
+                steps: [
+                    "Langkah 1: Kumpulkan variabel di ruas kiri. <strong>Kurangi kedua ruas dengan 2m</strong>.",
+                    "<span class='math-eq'>5m - 2m + 1 < 2m - 2m + 10</span>",
+                    "<span class='math-eq'>3m + 1 < 10</span>",
+                    "Langkah 2: Kumpulkan konstanta di kanan. <strong>Kurangi kedua ruas dengan 1</strong>.",
+                    "<span class='math-eq'>3m + 1 - 1 < 10 - 1</span>",
+                    "<span class='math-eq'>3m < 9</span>",
+                    "Langkah 3: <strong>Bagi kedua ruas dengan 3</strong>.",
+                    "<span class='math-eq'>m < 3</span>"
+                ],
+                final: "m < 3",
+                varName: "m", val: 3, dir: "left", isClosed: false
+            },
+            {
+                q: "4 - 3x \u2265 19",
+                desc: "Selesaikan pertidaksamaan berikut!",
+                steps: [
+                    "Langkah 1: <strong>Kurangi kedua ruas dengan 4</strong>.",
+                    "<span class='math-eq'>4 - 4 - 3x \u2265 19 - 4</span>",
+                    "<span class='math-eq'>-3x \u2265 15</span>",
+                    "Langkah 2: <strong>Bagi kedua ruas dengan -3</strong>.",
+                    "<span class='bg-yellow-200 px-1 rounded'>Ingat! Dibagi bilangan negatif, tanda dibalik (\u2265 menjadi \u2264).</span>",
+                    "<span class='math-eq'>-3x <b>/ (-3)</b> \u2264 15 <b>/ (-3)</b></span>",
+                    "<span class='math-eq'>x \u2264 -5</span>"
+                ],
+                final: "x \u2264 -5",
+                varName: "x", val: -5, dir: "left", isClosed: true
+            },
+            {
+                q: "2(x - 3) > 4",
+                desc: "Soal dengan tanda kurung. Gunakan sifat distributif dahulu!",
+                steps: [
+                    "Langkah 1: Kalikan angka 2 ke dalam kurung (Distributif).",
+                    "<span class='math-eq'>2x - 6 > 4</span>",
+                    "Langkah 2: <strong>Tambahkan kedua ruas dengan 6</strong>.",
+                    "<span class='math-eq'>2x - 6 + 6 > 4 + 6</span>",
+                    "<span class='math-eq'>2x > 10</span>",
+                    "Langkah 3: <strong>Bagi kedua ruas dengan 2</strong>.",
+                    "<span class='math-eq'>x > 5</span>"
+                ],
+                final: "x > 5",
+                varName: "x", val: 5, dir: "right", isClosed: false
+            },
+            {
+                q: "½x + 3 \u2264 5",
+                desc: "Pertidaksamaan dengan bentuk pecahan.",
+                steps: [
+                    "Langkah 1: <strong>Kurangi kedua ruas dengan 3</strong>.",
+                    "<span class='math-eq'>½x + 3 - 3 \u2264 5 - 3</span>",
+                    "<span class='math-eq'>½x \u2264 2</span>",
+                    "Langkah 2: Agar <span class='math-eq'>½x</span> menjadi <span class='math-eq'>x</span>, <strong>kalikan kedua ruas dengan 2</strong>.",
+                    "<span class='math-eq'>½x <b>* 2</b> \u2264 2 <b>* 2</b></span>",
+                    "<span class='math-eq'>x \u2264 4</span>"
+                ],
+                final: "x \u2264 4",
+                varName: "x", val: 4, dir: "left", isClosed: true
+            }
+        ];
+
+        // Data Soal Cerita (5 Soal)
+        const storyData = [
+            {
+                q: "Umur Andi 5 tahun lebih tua dari umur Budi. Jika jumlah umur mereka kurang dari 35 tahun, tentukan batas umur Budi!",
+                desc: "Misalkan umur Budi adalah <span class='math-eq'>x</span>.",
+                steps: [
+                    "Umur Budi = <span class='math-eq'>x</span>, Umur Andi = <span class='math-eq'>x + 5</span>.",
+                    "Jumlah umur mereka kurang dari 35: <span class='math-eq'>x + (x + 5) < 35</span>",
+                    "<span class='math-eq'>2x + 5 < 35</span>",
+                    "Kurangi kedua ruas dengan 5: <span class='math-eq'>2x < 30</span>",
+                    "Bagi kedua ruas dengan 2: <span class='math-eq'>x < 15</span>"
+                ],
+                final: "x < 15 (Umur Budi kurang dari 15 tahun)",
+                varName: "x", val: 15, dir: "left", isClosed: false
+            },
+            {
+                q: "Sebuah mobil box memuat barang dengan kapasitas maksimal 800 kg. Berat Pak Sopir adalah 60 kg dan ia akan mengangkut beberapa kotak yang masing-masing beratnya 20 kg. Berapa paling banyak kotak yang bisa dibawa?",
+                desc: "Misalkan banyak kotak adalah <span class='math-eq'>k</span>.",
+                steps: [
+                    "Berat total = berat sopir + (berat kotak * banyak kotak)",
+                    "Maksimal 800 kg artinya kurang dari atau sama dengan 800: <span class='math-eq'>60 + 20k \u2264 800</span>",
+                    "Kurangi kedua ruas dengan 60: <span class='math-eq'>20k \u2264 740</span>",
+                    "Bagi kedua ruas dengan 20: <span class='math-eq'>k \u2264 37</span>"
+                ],
+                final: "k \u2264 37 (Paling banyak 37 kotak)",
+                varName: "k", val: 37, dir: "left", isClosed: true
+            },
+            {
+                q: "Sebuah persegi panjang memiliki panjang (p+3) cm dan lebar 5 cm. Jika luasnya tidak lebih dari 40 cm², berapakah batas nilai p?",
+                desc: "Gunakan rumus Luas Persegi Panjang (p \u00d7 l).",
+                steps: [
+                    "Luas tidak lebih dari 40: <span class='math-eq'>Panjang \u00d7 Lebar \u2264 40</span>",
+                    "<span class='math-eq'>(p + 3) \u00d7 5 \u2264 40</span>",
+                    "Bagi kedua ruas dengan 5 terlebih dahulu (agar lebih mudah): <span class='math-eq'>p + 3 \u2264 8</span>",
+                    "Kurangi kedua ruas dengan 3: <span class='math-eq'>p \u2264 5</span>"
+                ],
+                final: "p \u2264 5",
+                varName: "p", val: 5, dir: "left", isClosed: true
+            },
+            {
+                q: "Uang saku Tika Rp 50.000. Ia membeli buku seharga Rp 15.000 dan ingin memborong pensil seharga Rp 3.000 per batang. Tentukan banyak pensil maksimal yang bisa dibeli!",
+                desc: "Misalkan banyak pensil adalah <span class='math-eq'>y</span>.",
+                steps: [
+                    "Total belanja tidak boleh melebihi uang saku: <span class='math-eq'>15000 + 3000y \u2264 50000</span>",
+                    "Kurangi kedua ruas dengan 15.000: <span class='math-eq'>3000y \u2264 35000</span>",
+                    "Bagi kedua ruas dengan 3.000: <span class='math-eq'>y \u2264 11.66...</span>",
+                    "Karena pensil harus berupa barang utuh, nilai maksimal <span class='math-eq'>y</span> adalah 11."
+                ],
+                final: "y \u2264 11.67 (Maksimal 11 pensil)",
+                varName: "y", val: 11.67, dir: "left", isClosed: true
+            },
+            {
+                q: "Nilai ulangan matematika Dinda berturut-turut 75, 80, dan 85. Jika ia ingin rata-rata nilai empat kali ulangannya minimal 82, berapakah nilai minimal ulangan keempat Dinda?",
+                desc: "Misalkan nilai ulangan keempat adalah <span class='math-eq'>n</span>.",
+                steps: [
+                    "Rumus rata-rata: <span class='math-eq'>(75 + 80 + 85 + n) / 4 \u2265 82</span>",
+                    "Jumlahkan nilai yang ada: <span class='math-eq'>(240 + n) / 4 \u2265 82</span>",
+                    "Kalikan kedua ruas dengan 4: <span class='math-eq'>240 + n \u2265 328</span>",
+                    "Kurangi kedua ruas dengan 240: <span class='math-eq'>n \u2265 88</span>"
+                ],
+                final: "n \u2265 88 (Nilai minimal 88)",
+                varName: "n", val: 88, dir: "right", isClosed: true
+            }
+        ];
+
+        // Function to generate Number Line SVG
+        function generateNumberLine(val, dir, isClosed) {
+            const fill = isClosed ? '#1e3a8a' : 'white'; // dark blue or empty
+            
+            // Path for arrow line
+            const arrowPath = dir === 'right' 
+                ? '<path d="M 150 20 L 280 20 L 270 15 M 280 20 L 270 25" stroke="#3b82f6" stroke-width="4" fill="none" />'
+                : '<path d="M 150 20 L 20 20 L 30 15 M 20 20 L 30 25" stroke="#3b82f6" stroke-width="4" fill="none" />';
+            
+            // Shaded region to indicate area
+            const shade = dir === 'right'
+                ? '<rect x="150" y="5" width="130" height="30" fill="#3b82f6" opacity="0.15" />'
+                : '<rect x="20" y="5" width="130" height="30" fill="#3b82f6" opacity="0.15" />';
+
+            return `
+            <div class="mt-4 p-4 bg-white border border-gray-200 rounded-lg shadow-inner overflow-x-auto text-center">
+                <p class="text-sm font-semibold text-gray-600 mb-2">Garis Bilangan:</p>
+                <svg width="300" height="80" viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg" class="inline-block">
+                    <!-- Area Arsiran -->
+                    ${shade}
+                    <!-- Garis Utama (Sumbu X) -->
+                    <line x1="10" y1="50" x2="290" y2="50" stroke="#4b5563" stroke-width="2" />
+                    <!-- Tanda Panah Ujung Sumbu X -->
+                    <path d="M 10 50 L 15 45 M 10 50 L 15 55" stroke="#4b5563" stroke-width="2" fill="none" />
+                    <path d="M 290 50 L 285 45 M 290 50 L 285 55" stroke="#4b5563" stroke-width="2" fill="none" />
+                    
+                    <!-- Tick Mark dan Label Nilai -->
+                    <line x1="150" y1="45" x2="150" y2="55" stroke="#4b5563" stroke-width="2" />
+                    <text x="150" y="70" font-family="Arial" font-weight="bold" font-size="14" fill="#374151" text-anchor="middle">${val}</text>
+                    
+                    <!-- Garis Vektor Arah Pertidaksamaan -->
+                    <line x1="150" y1="50" x2="150" y2="20" stroke="#3b82f6" stroke-width="2" stroke-dasharray="4" />
+                    ${arrowPath}
+                    
+                    <!-- Bulatan Penuh / Kosong di ujung vektor -->
+                    <circle cx="150" cy="20" r="6" stroke="#1e3a8a" stroke-width="3" fill="${fill}" />
+                </svg>
+                <p class="text-xs text-gray-500 mt-1">*Bulatan ${isClosed ? 'penuh (\u2264, \u2265)' : 'kosong (<, >)'}</p>
+            </div>
+            `;
+        }
+
+        // Render Function for both arrays
+        function renderQuestions(dataArray, containerId, isStory = false) {
+            const container = document.getElementById(containerId);
+
+            dataArray.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = "bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden";
+
+                // Question Header
+                const questionHeader = document.createElement('div');
+                questionHeader.className = "p-5 md:p-6";
+                
+                const qTitle = document.createElement('h3');
+                if(isStory) {
+                    qTitle.className = "text-lg font-semibold text-gray-800 mb-2 flex items-start leading-relaxed";
+                    qTitle.innerHTML = `<span class="bg-indigo-100 text-indigo-700 min-w-[32px] h-8 flex items-center justify-center rounded-full mr-3 text-sm flex-shrink-0">${index + 1}</span> <span>${item.q}</span>`;
+                } else {
+                    qTitle.className = "text-xl font-bold text-gray-800 mb-2 flex items-center";
+                    qTitle.innerHTML = `<span class="bg-indigo-100 text-indigo-700 w-8 h-8 flex items-center justify-center rounded-full mr-3 text-sm">${index + 1}</span> <span class="math-eq text-2xl">${item.q}</span>`;
+                }
+                
+                const qDesc = document.createElement('p');
+                qDesc.className = "text-gray-600 mb-4 ml-11 text-sm";
+                qDesc.innerHTML = item.desc;
+
+                const toggleBtn = document.createElement('button');
+                toggleBtn.className = "ml-11 bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-lg transition-colors flex items-center gap-2";
+                toggleBtn.innerHTML = `Lihat Pembahasan <svg class="w-4 h-4 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>`;
+
+                questionHeader.appendChild(qTitle);
+                questionHeader.appendChild(qDesc);
+                questionHeader.appendChild(toggleBtn);
+
+                // Answer Content (Accordion)
+                const answerSection = document.createElement('div');
+                answerSection.className = "accordion-content bg-gray-50 border-t border-gray-100";
+                
+                const answerContainer = document.createElement('div');
+                answerContainer.className = "p-5 md:p-6 ml-0 md:ml-11 space-y-3";
+                
+                // Steps
+                item.steps.forEach((step) => {
+                    const stepEl = document.createElement('p');
+                    stepEl.className = "text-gray-700 flex items-start gap-2";
+                    stepEl.innerHTML = `<span class="text-indigo-400 mt-1 flex-shrink-0">▶</span> <span>${step}</span>`;
+                    answerContainer.appendChild(stepEl);
+                });
+
+                // Final Answer and Solution Set (Himpunan)
+                const setSymbol = item.isClosed ? (item.dir === 'left' ? '\u2264' : '\u2265') : (item.dir === 'left' ? '<' : '>');
+                const finalEl = document.createElement('div');
+                finalEl.className = "mt-4 p-4 bg-green-50 border border-green-200 rounded-lg";
+                finalEl.innerHTML = `
+                    <p class="text-green-800 font-semibold mb-2">✅ Penyelesaian: <span class="math-eq text-lg">${item.final}</span></p>
+                    <p class="text-gray-700 text-sm">Himpunan Penyelesaian (HP):</p>
+                    <p class="text-blue-700 font-mono font-bold mt-1 text-lg">HP = { ${item.varName} | ${item.varName} ${setSymbol} ${item.val}, ${item.varName} &isin; R }</p>
+                `;
+                answerContainer.appendChild(finalEl);
+
+                // Number Line SVG
+                const numberLineHtml = generateNumberLine(item.val, item.dir, item.isClosed);
+                answerContainer.insertAdjacentHTML('beforeend', numberLineHtml);
+
+                answerSection.appendChild(answerContainer);
+
+                // Assemble
+                card.appendChild(questionHeader);
+                card.appendChild(answerSection);
+                container.appendChild(card);
+
+                // Toggle Logic
+                let isOpen = false;
+                toggleBtn.addEventListener('click', () => {
+                    isOpen = !isOpen;
+                    if (isOpen) {
+                        answerSection.classList.add('open');
+                        toggleBtn.innerHTML = `Tutup Pembahasan <svg class="w-4 h-4 transform rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>`;
+                        toggleBtn.classList.replace('bg-indigo-600', 'bg-gray-500');
+                        toggleBtn.classList.replace('hover:bg-indigo-700', 'hover:bg-gray-600');
+                    } else {
+                        answerSection.classList.remove('open');
+                        toggleBtn.innerHTML = `Lihat Pembahasan <svg class="w-4 h-4 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>`;
+                        toggleBtn.classList.replace('bg-gray-500', 'bg-indigo-600');
+                        toggleBtn.classList.replace('hover:bg-gray-600', 'hover:bg-indigo-700');
+                    }
+                });
+            });
+        }
+
+        // Execute render
+        renderQuestions(questionsData, 'questions-container', false);
+        renderQuestions(storyData, 'story-questions-container', true);
+
+    </script>
+</body>
+</html>
